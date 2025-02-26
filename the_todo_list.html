@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            background: linear-gradient(135deg, #8e44ad, #f39c12);
+            /* font-family: Arial, sans-serif;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black; */
+        }
+
+        td{
+            font-weight: 500;
+            font-size: 20px;
+            &:hover {
+                color: #feac5e;
+            }
+        }
+
+        th{
+            font-size: 20px;
+        }
+
+        .btn {
+            padding: 8px 24px;
+            background-color: black;
+            color: #fff;
+            font-size: 18px;
+            border-radius: 3px;
+            border: none;
+        }
+
+        input {
+            padding: 6px 2px;
+            min-width: 320px;
+            font-size: 18px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+</head>
+
+<body>
+    <h1>Todo List</h1>
+    <form>
+        <div>
+            <input type="text" value="" class="todoValue" />
+        </div>
+        <div>
+            <input type="text" value="" class="todoDescValue" />
+        </div>
+        <div>
+            <button class="btn">Add Todo</button>
+        </div>
+        <div class="todoLists">
+            <table class="table">
+                <thead>
+                    <th>Task</th>
+                    <th>Description</th>
+                    <th> Delete</th>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </form>
+    <script>
+        const todoLists = document.querySelector(".todoLists");
+        const listValue = document.querySelector(".todoValue");
+        const listDescValue = document.querySelector(".todoDescValue");
+        const tbodyEl = document.querySelector("tbody");
+
+        let todoListValue = [];
+        console.log(typeof todoListValue)
+
+        const getTodoListFromLS = () => {
+            return JSON.parse(localStorage.getItem("todoData2")) || [];
+        }
+
+        const addTodoListToLocalStorage = (todo) => {
+            return localStorage.setItem("todoData2", JSON.stringify(todo));
+        }
+
+        const showTodoList = () => {
+            todoListValue = getTodoListFromLS();
+            console.log(typeof todoListValue);
+            todoListValue.forEach((curTodo) => {
+
+                tbodyEl.innerHTML += `
+                <tr>
+                <td>${curTodo[0]}</td>
+                <td>${curTodo[1]}</td>
+                <td><button class="deleteBtn" class="btn btn-danger">Delete</button></td>
+                </tr> 
+                `
+            });
+        }
+
+        function onDeleteRow(e) {
+            if (!e.target.classList.contains("deleteBtn")) {
+                return;
+            }
+            const btn = e.target;
+            btn.closest("tr").remove();
+
+        localStorage.removeItem("todoListValue tr");
+        }
+
+        const removeTodoList = (e) =>{
+            console.log(e.target.textContent);
+            let currentTodo = e.target;
+            console.log(todoListValue);
+
+            updatedTodoList = todoListValue.filter(
+                (curTodoValue) => curTodoValue != currentTodo.textContent
+            );
+
+            addTodoListToLocalStorage(updatedTodoList);
+            currentTodo.remove();
+            // showTodoList(); //add other value again and not delete the clicked value
+            // todoLists.innerHTML=""; // remove all the value, after refresh rest of the value come
+
+            console.log(updatedTodoList)
+        }
+
+        const tableEl = document.querySelector("table");
+        tableEl.addEventListener("click", onDeleteRow);
+
+        const addTodoList = (e) => {
+            e.preventDefault();
+
+            todoListValue = getTodoListFromLS();
+            let newTodo = [listValue.value, listDescValue.value];
+
+            listValue.value = "";
+            listDescValue.value = "";
+
+            // !todoListValue.includes(newTodo) this method check value during add if value is exist it will note add it 
+            // if value doesn't there then only value will be added in the list and local storage as well
+            if (newTodo.length != 0 && !todoListValue.includes(newTodo)) {
+                todoListValue.push(newTodo);
+                // todoListValue = [...new Set(todoListValue)]
+                // this method will show todo valur but it will not store in local storage
+                //during refresh it will give unique value only
+
+                addTodoListToLocalStorage(todoListValue);
+
+                tbodyEl.innerHTML += `
+                <tr>
+                <td>${newTodo[0]}</td>  
+                <td>${newTodo[1]}</td>
+                <td><button class="deleteBtn" class="btn btn-danger">Delete</button></td>
+                </tr> 
+                `
+
+                // const liElement = document.createElement("li");
+                // liElement.innerHTML = newTodo
+                // todoLists.append(liElement);
+            }
+
+        };
+
+        showTodoList();
+
+        document.querySelector(".btn").addEventListener("click", (e) => {
+            addTodoList(e);
+        });
+        todoLists.addEventListener("click", (e) => removeTodoList(e));
+    </script>
+</body>
+
+</html>

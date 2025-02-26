@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo List</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+</head>
+<body>
+     <div class="container">
+<h1>Todo List</h1>
+
+<form method="POST" name="sample">
+<br>
+    Task <input type="text" name="task"> 
+    Description <input type="text" name="description">
+    <br><br>
+    <input type="button" name="add" value="Add Data" onclick="addTask();" class="btn btn-success"><hr>
+
+            <table id="tbl" class="table" border="1">
+                <thead>
+                <th>Task</th> 
+                <th>Description</th>
+                <th> Delete</th>
+                <th>Update</th>
+               
+                </thead>
+                
+                 <tbody>
+                     
+                 </tbody>
+             </table>
+
+</form>
+
+ <script type="text/javascript">
+       
+    function addTask()
+    { 
+        var task=document.sample.task.value; 
+        var description=document.sample.description.value; 
+        
+        var tr = document.createElement('tr');
+        
+        var td1 = tr.appendChild(document.createElement('td'));
+        var td2 = tr.appendChild(document.createElement('td'));
+        var td3 = tr.appendChild(document.createElement('td'));
+        var td4 = tr.appendChild(document.createElement('td'));
+        
+        
+        td1.innerHTML=task;
+        td2.innerHTML=description;
+        td3.innerHTML='<input type="button" name="del" value="Delete" onclick="delTask(this);" class="btn btn-danger">'
+        td4.innerHTML='<input type="button" name="up" value="Update" onclick="UpTask(this);" class="btn btn-primary">'
+
+        document.getElementById("tbl").appendChild(tr);
+    }
+
+    function UpTask(todo){
+        var task=document.sample.task.value; 
+        var description=document.sample.description.value; 
+        var s = todo.parentNode.parentNode;
+        var tr = document.createElement('tr');
+        
+        var td1 = tr.appendChild(document.createElement('td'));
+        var td2 = tr.appendChild(document.createElement('td'));
+        var td3 = tr.appendChild(document.createElement('td'));
+        var td4 = tr.appendChild(document.createElement('td'));
+        
+        
+        td1.innerHTML='<input type="text" name="task1">';
+        td2.innerHTML='<input type="text" name="description1">';
+        td3.innerHTML='<input type="button" name="del" value="Delete" onclick="delTask(this);" class="btn btn-danger">'
+        td4.innerHTML='<input type="button" name="up" value="Update" onclick="addUpTask(this);" class="btn btn-primary">'
+
+        document.getElementById("tbl").replaceChild(tr, s);
+    }
+
+    function addUpTask(todo){
+        var task=document.sample.task1.value; 
+        var description=document.sample.description1.value; 
+        var s = todo.parentNode.parentNode;
+        var tr = document.createElement('tr');
+        
+        var td1 = tr.appendChild(document.createElement('td'));
+        var td2 = tr.appendChild(document.createElement('td'));
+        var td3 = tr.appendChild(document.createElement('td'));
+        var td4 = tr.appendChild(document.createElement('td'));
+
+        
+        td1.innerHTML=task;
+        td2.innerHTML=description;
+        td3.innerHTML='<input type="button" name="del" value="Delete" onclick="delTask(this);" class="btn btn-danger">'
+        td4.innerHTML='<input type="button" name="up" value="Update" onclick="UpTask(this);" class="btn btn-primary">'
+
+        document.getElementById("tbl").replaceChild(tr, s);
+    }
+
+    function delTask(todo){
+        var s=todo.parentNode.parentNode;
+        s.parentNode.removeChild(s);
+    }
+    
+    
+    </script>
+</div>
+    </body>
+</html>

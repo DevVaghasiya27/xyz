@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Table</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+</head>
+<body>
+     <div class="container">
+<h1>Student Data</h1>
+
+<form method="POST" name="sample">
+<br>
+    Maths <input type="number" name="maths"> 
+    Gujarati <input type="number" name="gujarati"> 
+    Hindi <input type="number" name="hindi"> 
+    English <input type="number" name="english"> 
+    Science <input type="number" name="science"> 
+    SS <input type="number" name="ss"> 
+    Computer <input type="number" name="computer">
+    <br><br>
+    <input type="button" name="add" value="Submit" onclick="addDetails()" class="btn btn-success"><hr>
+
+            <table id="tbl" class="table" border="1">
+                <thead>
+                <td>subject</td> 
+                <td>Obtained</td>
+                </thead>
+                
+                 <tbody>
+                    <tr>
+                        <td >maths</td>
+                        <td id="maths"></td>
+                    </tr>   
+                    <tr>
+                        <td>gujarati</td>
+                        <td id="gujarati"></td>
+                    </tr>
+                    <tr>
+                        <td>hindi</td>
+                        <td id="hindi"></td>
+                    </tr>
+                    <tr>
+                        <td>english</td>
+                        <td id="english"></td>
+                    </tr>
+                    <tr>
+                        <td>science</td>
+                        <td id="science"></td>
+                    </tr>
+                    <tr>
+                        <td>ss</td>
+                        <td id="ss"></td>
+                    </tr>
+                    <tr>
+                        <td>computer</td>
+                        <td id="computer"></td>
+                    </tr>
+                 </tbody>
+             </table>
+
+</form>
+
+ <script type="text/javascript">
+       
+    function addDetails()
+    { 
+        var Maths=document.sample.maths.value; 
+        var Gujarati=document.sample.gujarati.value; 
+        var Hindi=document.sample.hindi.value; 
+        var English=document.sample.english.value; 
+        var Science=document.sample.science.value; 
+        var SS=document.sample.ss.value; 
+        var Computer=document.sample.computer.value; 
+        
+        var tr1 = document.getElementById('maths');
+        var tr2 = document.getElementById('gujarati');
+        var tr3 = document.getElementById('hindi');
+        var tr4 = document.getElementById('english');
+        var tr5 = document.getElementById('science');
+        var tr6 = document.getElementById('ss');
+        var tr7 = document.getElementById('computer');
+        
+        
+        tr1.innerHTML=Maths;
+        tr2.innerHTML=Gujarati;
+        tr3.innerHTML=Hindi;
+        tr4.innerHTML=English;
+        tr5.innerHTML=Science;
+        tr6.innerHTML=SS;
+        tr7.innerHTML=Computer;
+    }
+    
+    </script>
+</div>
+    </body>
+</html> 

@@ -1,0 +1,43 @@
+<!DOCTYPE html> 
+  
+<html> 
+  
+<head> 
+    <title>Form required Attribute | With custom message validation 
+    </title> 
+</head> 
+  
+<body> 
+    <center> 
+  
+        <h1 style="color:green">GeeksforGeeks</h1> 
+  
+        <form id="myform"> 
+            <p>Enter an Email Id:</p> 
+            <input id="email" oninvalid="InvalidMsg(this);" 
+                   oninput="InvalidMsg(this);" name="email" 
+                   type="email" required="required" /> 
+            <input type="submit" /> 
+        </form> 
+    </center> 
+  
+    <script> 
+        function InvalidMsg(textbox) { 
+  
+            if (textbox.value === '') { 
+                textbox.setCustomValidity 
+                      ('Entering an email-id is necessary!'); 
+            } else if (textbox.validity.typeMismatch) { 
+                textbox.setCustomValidity 
+                      ('Please enter an email address which is valid!'); 
+            } else { 
+                textbox.setCustomValidity(''); 
+            } 
+  
+            return true; 
+        } 
+    </script> 
+  
+</body> 
+  
+</html> 

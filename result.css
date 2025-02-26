@@ -1,0 +1,28 @@
+.card {
+    padding: 12px 16px;
+} 
+
+.title{
+    background-color: rgb(174, 186, 186);
+}
+
+.container {
+    padding: 12px 16px; 
+} 
+
+.title{
+    border-radius: 5px;
+}
+
+.row {
+    padding: 8px 280px; 
+} 
+
+.colspan {
+    text-align: right;
+    padding-right: 10px;
+ }
+
+table{
+    text-align: left;
+}

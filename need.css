@@ -1,0 +1,18 @@
+#need{
+    background-color: rgb(235, 228, 217);
+    color: rgb(17, 17, 17);
+    font-size: 1.5em;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+body{
+    color: rgb(4, 199, 4);
+    background-color: black;
+    font-size: 1.5em;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 10px;
+    width: 100%;
+}
